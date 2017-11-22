@@ -23,7 +23,7 @@ echo'
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <form  action="return false" onsubmit="return false" method="POST" id="formentrar"> 
-                                <div class="col-md-4 col-md-offset-4">                                       
+                                <div class="col-md-8 col-md-offset-4">                                       
                                      <select name="recogerestaurante" class="form-control" required id="recogerestaurante">
                                         ';
                                         $alm = $this->model2->listarrestaurantes();
@@ -35,9 +35,9 @@ echo'
                                       </select> 
                                       <br>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombreDom">Rango de fecha <span class="required"></span>
+                                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="nombreDom">Rango de fecha <span class="required"></span>
                                         </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">                                                      
+                                            <div class="col-md-8 col-sm-8 col-xs-12">                                                      
                                                 <input type="date" id="fecha1" required class="form-horizontal col-md-6 col-xs-12" name="fecha1" value="" placeholder="17/07/2017">
                                                 <input type="date" id="fecha2" required class="form-horizontal col-md-6 col-xs-12" name="fecha2" value="" placeholder="17/07/2019">        
                                             </div>                                                                                                     
@@ -89,7 +89,7 @@ echo'
                 if (resp == 1)
                 {
 
-                    window.location="../../../panel_de_control.php";
+                    window.location="panel_de_control.php";
                 }
 
                 else

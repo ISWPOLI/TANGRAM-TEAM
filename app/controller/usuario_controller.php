@@ -91,7 +91,25 @@ class UsuarioController{
 
     }
 
+    public function eligedomiparareporte(){
+
+        require_once 'view/header_comun_logueado.php';
+        require_once 'view/usuario/elige_domi_reporte.php';
+
+    }
 
 
+    public function  Muestrareporteenviosporiddomi(){
+
+        require_once 'view/header_comun_logueado.php';
+        require_once 'view/usuario/reporte_escoje_domi.php';
+
+    }
+    public function  Muestrareporteeficienciadomi(){
+
+        require_once 'view/header_comun_logueado.php';
+        require_once 'view/usuario/reporte_eficiencia_domi.php';
+
+    }
 
 }

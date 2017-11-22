@@ -188,7 +188,6 @@ echo '
                                         
                                         <li><a href="reportes.php?r=resta">Todos los Envios</a>
                                         <li><a href="reportes.php?r=canresta">Cantidad Envios</a>
-                                        <li><a href="reportes.php?r=rast">Rastreo Factura</a>
                                         </li>
                                         
                                         </ul>
@@ -196,8 +195,7 @@ echo '
                                         <ul class="nav child_menu" style="display: none">
                                         
                                         <li><a href="reportes.php?r=domi">Todos los Envios</a>                                       
-                                        <li><a href="reportes.php?r=candomi">Cantidad Envios</a>
-                                        <li><a href="reportes.php?r=efici">Eficiencia</a>                                                                                
+                                        <li><a href="reportes_domis.php">Por Domiciliario</a>                                                                                                                      
                                         </li>                                                                                                                     
                                         </ul>
                                 
@@ -232,8 +230,7 @@ echo '
                                         <ul class="nav child_menu" style="display: none">
                                         
                                         <li><a href="reportes.php?r=resta">Todos los Envios</a>
-                                        <li><a href="reportes.php?r=canresta">Cantidad Envios</a>
-                                        <li><a href="reportes.php?r=rast">Rastreo Factura</a>
+                                        <li><a href="reportes.php?r=canresta">Cantidad Envios</a>                                      
                                         </li>
                                         
                                         </ul>
@@ -241,8 +238,7 @@ echo '
                                         <ul class="nav child_menu" style="display: none">
                                         
                                         <li><a href="reportes.php?r=domi">Todos los Envios</a>                                       
-                                        <li><a href="reportes.php?r=candomi">Cantidad Envios</a>
-                                        <li><a href="reportes.php?r=efici">Eficiencia</a>                                                                                
+                                        <li><a href="reportes_domis.php">Por Domiciliario</a>                                                                               
                                         </li>                                                                                                                     
                                         </ul>
                                 

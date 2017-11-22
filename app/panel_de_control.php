@@ -11,22 +11,32 @@ require_once 'controller/usuario_controller.php';
 require_once 'controller/rol_controller.php';
 require_once 'controller/control_de_sesion.php';
 
+$objpanel = new panel_de_control();
+$objpanel->arranque();
+
+class panel_de_control
+{
+
+    public function arranque()
+    {
+
+        $control = new RestauranteController();
+        $controlusuario = new UsuarioController();
+        $controlrol = new RolController();
 
 
-$control = new RestauranteController();
-$controlusuario = new UsuarioController();
-$controlrol = new RolController();
+        $controlusuario->model->Load_from_key($_SESSION['Id_Usuario']);
+        $modelsession = new control_de_sesion(3, $controlusuario->model->getID_ROL());
+        $modelsession->compruebasessionidrestaurante();
+        $modelsession->compruebasessionrolusuario();
 
+        $controlusuario->model->Load_from_key($_SESSION['Id_Usuario']);
+        $control->model2->Load_from_key($_SESSION['id_restaurante']);
+        $controlusuario->model->getNOMBRE();
+        $controlusuario->model->getAPELLIDO();
 
-$controlusuario->model->Load_from_key($_SESSION['Id_Usuario']);
-$modelsession = new control_de_sesion(3, $controlusuario->model->getID_ROL());
-$modelsession->compruebasessionidrestaurante();
-$modelsession->compruebasessionrolusuario();
+        $control->panel();
+    }
+}
 
-$controlusuario->model->Load_from_key($_SESSION['Id_Usuario']);
-$control->model2->Load_from_key($_SESSION['id_restaurante']);
-$controlusuario->model->getNOMBRE();
-$controlusuario->model->getAPELLIDO();
-
-$control->panel();
 

@@ -132,8 +132,8 @@ Class tbl_restaurante {
                                                         from randys.tbl_restaurante     rest,
                                                              randys.tbl_envio 		     envio,
                                                              randys.tbl_usuario         usuario
-                                                        Where rest.id_restaurante  			 = envio.id_restaurante
-                                                        and   envio.id_usuario     			 = usuario.id_usuario
+                                                        Where rest.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                        and   envio.ID_USUARIO    			 = usuario.ID_USUARIO
                                                         group by usuario.ID_USUARIO,usuario.NOMBRE,usuario.APELLIDO");
         return $result;
 
@@ -147,11 +147,11 @@ Class tbl_restaurante {
                                                              randys.tbl_factura         fact,
                                                              randys.tbl_envios_factura  envios_fac,
                                                              randys.tbl_usuario        usuario
-                                                        Where rest.id_restaurante  			 = envio.id_restaurante
-                                                        and   envio.id_usuario     			 = usuario.id_usuario
-                                                        and   envio.id_envio       			 = envios_fac.id_envio
-                                                        and   envios_fac.id_factura 		 = fact.id_factura
-                                                        and rest.id_restaurante = '$a'");
+                                                        Where rest.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                        and   envio.ID_USUARIO     			 = usuario.ID_USUARIO
+                                                        and   envio.ID_ENVIO       			 = envios_fac.ID_ENVIO
+                                                        and   envios_fac.ID_FACTURA 		 = fact.ID_FACTURA
+                                                        and rest.ID_RESTAURANTE = '$a'");
         return $result;
 
     }
@@ -161,66 +161,89 @@ Class tbl_restaurante {
         $result = $this->connection->RunQuery("select distinct usuariop.NOMBRE, usuariop.APELLIDO,
                                                                DATE_FORMAT(registro.FECHA_HORA_LLEGADA,'%r') hora_llegada,
                                                               (select count(*) as cantidad_de_domicilios
-                                                                    from randys.TBL_RESTAURANTE     rest1,
-                                                                         randys.TBL_ENVIO 		     envio1,
-                                                                         randys.TBL_USUARIO         usuario
-                                                                    Where rest1.id_restaurante  			 = envio.id_restaurante
-                                                                    and   envio1.id_usuario     			 = usuariop.id_usuario
-                                                                    and usuario.id_usuario 				 = usuariop.ID_USUARIO
-                                                                    and DATE_FORMAT(envio.fecha_hora_llegada,'%Y-%m-%d') = '$fecha') cantidad_domicilios,
+                                                                    from randys.tbl_restaurante     rest1,
+                                                                         randys.tbl_envio 		     envio1,
+                                                                         randys.tbl_usuario         usuario
+                                                                    Where rest1.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                                    and   envio1.ID_USUARIO     			 = usuariop.ID_USUARIO
+                                                                    and usuario.ID_USUARIO 				 = usuariop.ID_USUARIO
+                                                                    and DATE_FORMAT(envio.FECHA_HORA_SALIDA,'%Y-%m-%d') = '$fecha') cantidad_domicilios,
                                                                     estado.DESCRIPCION_ESTADO
-                                                        from randys.TBL_RESTAURANTE          rest,
-                                                             randys.TBL_ENVIO 		         envio,
-                                                             randys.TBL_USUARIO         	 usuariop,
+                                                        from randys.tbl_restaurante          rest,
+                                                             randys.tbl_envio 		         envio,
+                                                             randys.tbl_usuario         	 usuariop,
                                                              randys.tbl_estado_domiciliarios estado,
                                                              randys.tbl_registro_laboral     registro
-                                                        Where rest.id_restaurante  			 = envio.id_restaurante
-                                                        and   envio.id_usuario     			 = usuariop.id_usuario
-                                                        and  ( usuariop.id_usuario			 = estado.id_usuario 
-                                                                                                and estado.id_estado_domiciliarios in 
-                                                                                                (select max(id_estado_domiciliarios) 
-                                                                                                from tbl_estado_domiciliarios c  where c.id_usuario = estado.id_usuario) )
-                                                        and   registro.id_usuario            = usuariop.id_usuario
+                                                        Where rest.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                        and   envio.ID_USUARIO     			 = usuariop.ID_USUARIO
+                                                        and  ( usuariop.ID_USUARIO			 = estado.ID_USUARIO 
+                                                                                                and estado.ID_ESTADO_DOMICILIARIOS in 
+                                                                                                (select max(ID_ESTADO_DOMICILIARIOS) 
+                                                                                                from tbl_estado_domiciliarios c  where c.ID_USUARIO = estado.ID_USUARIO) )
+                                                        and   registro.ID_USUARIO            = usuariop.ID_USUARIO
                                                         and   rest.ID_RESTAURANTE = '$idresta'
-                                                        and   DATE_FORMAT(envio.fecha_hora_llegada,'%Y-%m-%d') = '$fecha'
-                                                        and   DATE_FORMAT(registro.fecha_hora_llegada,'%Y-%m-%d') = '$fecha'");
+                                                        and   DATE_FORMAT(envio.FECHA_HORA_SALIDA,'%Y-%m-%d') = '$fecha'
+                                                        and   DATE_FORMAT(registro.FECHA_HORA_LLEGADA,'%Y-%m-%d') = '$fecha'");
         return $result;
 
     }
 
     public function listardomiciliariosactivosporrestauranteconenvioactivo($fecha, $idresta)
     {
-        $result = $this->connection->RunQuery("select distinct envio.id_envio,usuariop.NOMBRE, usuariop.APELLIDO,
-                                                               DATE_FORMAT(registro.FECHA_HORA_LLEGADA,'%r') hora_llegada,
-                                                              (select count(*) as cantidad_de_domicilios
-                                                                    from randys.TBL_RESTAURANTE     rest1,
-                                                                         randys.TBL_ENVIO 		     envio1,
-                                                                         randys.TBL_USUARIO         usuario
-                                                                    Where rest1.id_restaurante  			 = envio.id_restaurante
-                                                        and   envio1.id_usuario     			 = usuariop.id_usuario
-                                                        and usuario.id_usuario 				 = usuariop.ID_USUARIO
-                                                        and DATE_FORMAT(envio.fecha_hora_llegada,'%Y-%m-%d') = '$fecha') cantidad_domicilios,
-                                                                    estado.DESCRIPCION_ESTADO
-                                                        from randys.TBL_RESTAURANTE          rest,
-                                                             randys.TBL_ENVIO 		         envio,
-                                                             randys.TBL_USUARIO         	 usuariop,
-                                                             randys.tbl_estado_domiciliarios estado,
-                                                             randys.tbl_registro_laboral     registro
-                                                        Where rest.id_restaurante  			 = envio.id_restaurante
-                                                        and   envio.id_usuario     			 = usuariop.id_usuario
-                                                        and  ( usuariop.id_usuario			 = estado.id_usuario
-                                                            and estado.id_estado_domiciliarios in
-                                                        (select max(id_estado_domiciliarios)
-                                                                                                from tbl_estado_domiciliarios c  where c.id_usuario = estado.id_usuario) )
-                                                        and   registro.id_usuario            = usuariop.id_usuario
-                                                        and   envio.estado_envio            = 1
-                                                        and   rest.ID_RESTAURANTE = '$idresta'
-                                                        and   DATE_FORMAT(envio.fecha_hora_llegada,'%Y-%m-%d') = '$fecha'
-                                                        and   DATE_FORMAT(registro.fecha_hora_llegada,'%Y-%m-%d') = '$fecha'");
+        $result = $this->connection->RunQuery("select distinct usuariop.celular ,usuariop.NOMBRE, usuariop.APELLIDO,
+                                                       DATE_FORMAT(registro.FECHA_HORA_LLEGADA,'%r') hora_llegada,
+                                                      (select count(*) as cantidad_de_domicilios
+                                                            from randys.tbl_restaurante     rest1,
+                                                                 randys.tbl_envio 		     envio1,
+                                                                 randys.tbl_usuario         usuario
+                                                            Where rest1.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                and   envio1.ID_USUARIO     			 = usuariop.ID_USUARIO
+                                                and usuario.ID_USUARIO 				 = usuariop.ID_USUARIO
+                                                and DATE_FORMAT(envio1.FECHA_HORA_SALIDA,'%Y-%m-%d') = '$fecha') cantidad_domicilios,
+                                                           estado.DESCRIPCION_ESTADO
+                                                from randys.tbl_restaurante          rest,
+                                                     randys.tbl_envio 		         envio,
+                                                     randys.tbl_usuario         	 usuariop,
+                                                     randys.tbl_estado_domiciliarios estado,
+                                                     randys.tbl_registro_laboral     registro
+                                                Where rest.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                and  ( usuariop.ID_USUARIO			 = estado.ID_USUARIO
+                                                    and estado.ID_ESTADO_DOMICILIARIOS in
+                                                (select max(ID_ESTADO_DOMICILIARIOS)
+                                                                                        from tbl_estado_domiciliarios c  where c.ID_USUARIO = estado.ID_USUARIO) )
+                                                and   registro.ID_USUARIO            = usuariop.ID_USUARIO
+                                                and   rest.ID_RESTAURANTE = '$idresta'
+                                                and   DATE_FORMAT(envio.FECHA_HORA_SALIDA,'%Y-%m-%d') = '$fecha'
+                                                and   DATE_FORMAT(registro.FECHA_HORA_LLEGADA,'%Y-%m-%d') = '$fecha'
+                                                and   DATE_FORMAT(registro.FECHA_HORA_LLEGADA,'%Y-%m-%d') = '0000-00-00'");
         return $result;
 
     }
+    public function listarenviosporrestauranterangofecha($idresta, $fecha1, $fecha2 )
+    {
+        $result = $this->connection->RunQuery("select
+                                                DATE_FORMAT(envio.FECHA_HORA_SALIDA,'%d-%m-%y') fecha,
+                                                DATE_FORMAT(envio.FECHA_HORA_SALIDA,'%h-%i-%s') hora_salida,
+                                                DATE_FORMAT(envio.FECHA_HORA_LLEGADA,'%h-%i-%s') hora_llegada,
+                                                envio.ID_ENVIO,
+                                                (SELECT NOMBRE FROM tbl_usuario WHERE ID_USUARIO = envio.ID_USUARIO),
+                                                (SELECT APELLIDO FROM tbl_usuario WHERE ID_USUARIO = envio.ID_USUARIO),
+                                                count(*) as cantidad_de_domicilios
+                                                from randys.tbl_restaurante     rest,
+                                                randys.tbl_envio 		     envio,
+                                                randys.tbl_usuario         usuario
+                                                Where rest.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                and   envio.ID_USUARIO     			 = usuario.ID_USUARIO
+                                                and  DATE_FORMAT(envio.FECHA_HORA_LLEGADA,'%Y-%m-%d') between  '$fecha1' and '$fecha2'
+                                                and    rest.ID_RESTAURANTE = '$idresta'
+                                                group by
+                                                envio.FECHA_HORA_SALIDA,
+                                                envio.FECHA_HORA_LLEGADA,
+                                                envio.ID_ENVIO,
+                                                usuario.ID_USUARIO;");
+        return $result;
 
+    }
 
 
 
@@ -233,5 +256,5 @@ Class tbl_restaurante {
 
 
 
-;
+
 

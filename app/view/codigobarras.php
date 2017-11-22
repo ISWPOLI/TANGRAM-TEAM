@@ -10,7 +10,7 @@ if (isset($_POST['idcodigobarras']))
 {
     $a = $_POST['idcodigobarras'];
 }
-echo '<!DOCTYPE html>
+echo'<!DOCTYPE html>
 <html lang="es">
 	<head>
 		<title>codigo de barra</title>
@@ -35,7 +35,7 @@ echo '<!DOCTYPE html>
                     <table>
                         <tr>
                            <td>
-                                <img src="https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data=' .$a. '&code=EAN13&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0" alt="Barcode Generator TEC-IT"/>
+                                <img src="https://barcode.tec-it.com/barcode.ashx?translate-esc=off&data='.$a.'&code=EAN13&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=%23000000&bgcolor=%23ffffff&qunit=Mm&quiet=0" alt="Barcode Generator TEC-IT"/>
                            </td>
                            <td style="padding:10px; text-align:center; font-size:15px; font-family:Arial,Helvetica;">
                                 
@@ -57,9 +57,9 @@ echo '<!DOCTYPE html>
             </div>
         </div>
 
-        <script src="../app/assets/js/bootstrap.min.js"></script>
-        <script src="../app/assets/js/jquery-ui/jquery-ui.min.js"></script>
-        <script src="../app/assets/js/ini.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery-ui/jquery-ui.min.js"></script>
+        <script src="../assets/js/ini.js"></script>
 
     </body>
 </html>';

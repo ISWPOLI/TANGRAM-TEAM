@@ -212,7 +212,7 @@ echo'
                                                           <td class=" ">'.$row[2].'</td>
                                                           <td class=" ">'.$row[3].'</td>
                                                           <td class=" ">';
-                                                            if ($row[4] = 1)
+                                                            if ($row[4] == 1)
                                                             {echo'Ocupado';}
                                                             else
                                                             {{echo'Disponible';}}

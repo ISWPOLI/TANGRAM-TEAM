@@ -6,88 +6,39 @@ require_once 'controller/restaurante_controller.php';
 require_once 'controller/usuario_controller.php';
 require_once 'controller/control_de_sesion.php';
 
+$objreg= new registro_jornada();
+$objreg->arranque();
 
-$objregistro = new RegistroController();
-$control = new RestauranteController();
-$controlusuario = new UsuarioController();
-
-$modelsession = new control_de_sesion(4, 3);
-$modelsession->compruebasessionidrestaurante();
-
-
-/*
-if (isset($_POST['botonenviodomi']))
+class registro_jornada
 {
-    $objenvio->registradomiparaenvio($_POST['barrasdomiciliario']);
-    unset($_POST['botonenviodomi']);
 
+    public function arranque()
+    {
+
+        $objregistro = new RegistroController();
+        $control = new RestauranteController();
+        $controlusuario = new UsuarioController();
+
+        $modelsession = new control_de_sesion(4, 3);
+        $modelsession->compruebasessionidrestaurante();
+
+
+
+        if (isset($_POST['botonEnvHoraIng'])) {
+            $objregistro->registradomiliario($_POST['barrasdomi']);
+            unset($_POST['botonEnvHoraIng']);
+
+        }
+
+
+        $objregistro->registrohoralaboral();
+
+
+        //$objenvio->envioingresadomi();
+
+
+
+
+        exit();
+    }
 }
-
-if (isset($_POST['botonenviootrafactura']))
-{
-    $objenvio->registrafacturaparaenvio($_POST['barrasfactura']);
-
-}
-if (isset($_POST['botonenviofacturaterminar']))
-{
-    $objenvio->registraenviototal();
-
-    exit();
-}
-
-
-if (isset($_SESSION['envio'][0]))
-{
-    $objenvio->envioingresafactura();
-}
-else
-{
-    $objenvio->envioingresadomi();
-}*/
-
-if (isset($_POST['botonEnvHoraIng']))
-{
-    $objregistro->registradomiliario($_POST['barrasdomi']);
-    unset($_POST['botonEnvHoraIng']);
-
-}
-
-
-$objregistro->registrohoralaboral();
-
-
-
-
-
-
-//$objenvio->envioingresadomi();
-
-
-
-/*unset la variable de control
-un while para meter las facturas
-mete factura, capturda ultima faactura, registra enlace
-
-en pagina factura si no esta seteado session se crea una valor 0 si ya esta se suma 1  session cuentaenvio
-
-la toma de datos es session envio[0][id_usuariosomi]
-envio[1]factura]
-envio[2[factura]
-
-session con contador para la cantidad de facturas
-*/
-
-
-/*
-if
-{
-    $objenvio->registro_exitoso();
-}
-
-else
-{
-    $objenvio->enviopedidodomiciliario();
-}
- */
-
-exit();

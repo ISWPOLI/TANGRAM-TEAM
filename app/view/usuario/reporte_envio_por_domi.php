@@ -242,7 +242,7 @@ echo'
                 if (resp == 1)
                 {
 
-                    window.location="../../../panel_de_control.php";
+                    window.location="panel_de_control.php";
                 }
 
                 else

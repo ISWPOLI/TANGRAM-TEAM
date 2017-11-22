@@ -201,11 +201,11 @@ Class tbl_envio {
                                                         DATE_FORMAT(envio.FECHA_HORA_SALIDA,'%h-%i-%s') hora_salida,
                                                         DATE_FORMAT(envio.FECHA_HORA_LLEGADA,'%h-%i-%s') hora_llegada,
                                                         envio.ID_ENVIO
-                                                        from randys.TBL_RESTAURANTE     rest,
-                                                             randys.TBL_ENVIO 		     envio,
-                                                             randys.TBL_USUARIO         usuario
-                                                        Where rest.id_restaurante  			 = envio.id_restaurante
-                                                        and   envio.id_usuario     			 = usuario.id_usuario
+                                                        from randys.tbl_restaurante     rest,
+                                                             randys.tbl_envio		     envio,
+                                                             randys.tbl_usuario         usuario
+                                                        Where rest.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                        and   envio.ID_USUARIO    			 = usuario.ID_USUARIO
                                                         and usuario.CODIGO_DE_BARRAS = '$codigobarra'
                                                         and  DATE_FORMAT(envio.fecha_hora_llegada,'%Y-%m-%d') between  '$fecha1' and '$fecha2'
                                                         
@@ -223,12 +223,12 @@ Class tbl_envio {
                                                             envio.ID_ENVIO,
                                                             concat(usuario.NOMBRE,' ', usuario.apellido) NOMBRE,
                                                             envio.FECHA_HORA_SALIDA,
-                                                            SEC_TO_TIME((TIMESTAMPDIFF(MINUTE , envio.FECHA_HORA_SALIDA, envio.FECHA_HORA_LLEGADA ))*60) AS tiempo_transcurrido
-                                                            from randys.TBL_RESTAURANTE     rest,
-                                                                 randys.TBL_ENVIO 		     envio,
-                                                                 randys.TBL_USUARIO         usuario
-                                                            Where rest.id_restaurante  			 = envio.id_restaurante
-                                                            and   envio.id_usuario     			 = usuario.id_usuario
+                                                            SEC_TO_TIME((TIMESTAMPDIFF(MINUTE , envio.FECHA_HORA_SALIDA, NOW() ))*60) AS tiempo_transcurrido
+                                                            from randys.tbl_restaurante     rest,
+                                                                 randys.tbl_envio 		     envio,
+                                                                 randys.tbl_usuario        usuario
+                                                            Where rest.ID_RESTAURANTE  			 = envio.ID_RESTAURANTE
+                                                            and   envio.ID_USUARIO     			 = usuario.ID_USUARIO
                                                             and    rest.ID_RESTAURANTE = '$idrestau'
                                                             and   envio.ESTADO_ENVIO =  1
                                                             and   DATE_FORMAT(envio.FECHA_HORA_SALIDA,'%Y-%m-%d') =  '$fecha' 

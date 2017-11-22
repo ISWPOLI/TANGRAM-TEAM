@@ -13,16 +13,27 @@ echo'
                     <div class="page-title">
                         <div class="title_left">
                             <h3>
-                               Gestion de Supervisores '.$controlusuario2->model->getID_ROL().'****                   
+                               Gestion de Supervisores                  
                 </h3>
                         </div>
+                    </div>';
 
                 
-                    <div class="clearfix"></div>
+                    echo'<div class="clearfix"></div>
 
-                    <div class="row">
+                    <div class="row">';
 
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+if (isset($_REQUEST['p']))
+{
+    echo '<div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Correo Electronico</strong> ';
+    echo ' Ya esta en uso!!!';
+    echo'</div>';
+}
+
+
+                        echo'<div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 
                                 <div class="x_content">

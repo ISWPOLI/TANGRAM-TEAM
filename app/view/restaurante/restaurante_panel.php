@@ -37,9 +37,9 @@ echo '
                                                 <!-- <th>
                                                     <input type="checkbox" class="tableflat">
                                                 </th> -->
-                                                <th>Id Envio</th>
+                                                <th>Celular</th>
                                                 <th>Nombre Apellido</th>
-                                                <th>Hora Salida</th>
+                                                <th>Hora LLegada</th>
                                                 <th>Cant envios</th>
                                                 <th>Estado</th>
 												
@@ -59,7 +59,7 @@ $arreglo = $objresta->listardomiciliariosactivosporrestauranteconenvioactivo(dat
                                                           <td class=" ">'.$row[3].'</td>
                                                           <td class=" ">'.$row[4].'</td>
                                                           <td class=" ">';
-                                                            if ($row[5] = 1)
+                                                            if ($row[5] == 1)
                                                             {echo'Ocupado';}
                                                             else
                                                             {{echo'Disponible';}}
@@ -84,7 +84,7 @@ $arreglo = $objresta->listardomiciliariosactivosporrestauranteconenvioactivo(dat
                                                 <th>Envio</th>
                                                 <th>Domiciliario</th>
                                                 <th>Fecha hora salida </th>
-                                                <th>estado</th>
+                                                <th>Tiempo Trascurrido</th>
 												
                                         </thead>
 

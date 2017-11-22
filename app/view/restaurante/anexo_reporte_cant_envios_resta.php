@@ -82,13 +82,11 @@ class Validarlogin
                                                 <!-- <th>
                                                     <input type="checkbox" class="tableflat">
                                                 </th> -->
-                                                <th>Restaurante</th>
-                                                <th>Nombre </th>
-                                                <th>apellido</th>
-                                                <th>Fecha salida</th>
-                                                <th>Fecha llegada</th>
-                                                <th>No factura</th>
-                                                <th>Zona</th>
+                                                <th>Fecha</th>
+                                                <th>Hora salida </th>
+                                                <th>Hora llegada</th>
+                                                <th>id </th>
+                                                <th>domiciliario</th>
                                                 
                                         </thead>
 
@@ -97,7 +95,7 @@ class Validarlogin
       $controlusuario2 = new tbl_restaurante();
 
         //ID_USUARIO 	NOMBRE 	APELLIDO 	IDENTIFICACION 	PASSWORD 	CELULAR 	CORREO_ELECTRONICO 	CODIGO_DE_BARRAS 	ID_ROL 	ID_ALIADOS
-        $arreglo = $controlusuario2->listarcantidadenviosporrestaurante($this->recogerestaurante);
+        $arreglo = $controlusuario2->listarenviosporrestauranterangofecha($this->recogerestaurante, $this->fecha1 ,$this->fecha2 );
 
 
 
@@ -109,9 +107,8 @@ class Validarlogin
                       <td>'.$row[1].'</td>
                       <td>'.$row[2].'</td>
                       <td>'.$row[3].'</td>
-                      <td>'.$row[4].'</td>
-                      <td>'.$row[5].'</td>
-                      <td>'.$row[6].'</td>
+                      <td>'.$row[4].' '.$row[5].'</td>
+                      
                       </tr>';
 
         }
